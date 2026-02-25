@@ -1,0 +1,136 @@
+# Dnamer - .gitignore
+# This file tells Git what NOT to include in the repository
+# Others can clone and build the app - all necessary files are included
+
+# =============================================================================
+# ✅ KEEP (These WILL be in Git - needed for others to build)
+# =============================================================================
+# - *.swift (all Swift source files)
+# - *.xcodeproj (Xcode project file - REQUIRED)
+# - Assets.xcassets (app icons and images)
+# - README.md, documentation
+# - Info.plist, Entitlements
+
+# =============================================================================
+# ❌ IGNORE (These will NOT be in Git - generated or user-specific)
+# =============================================================================
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Xcode - Build Products (Generated when you build - others will build their own)
+build/
+DerivedData/
+*.moved-aside
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Xcode - User Settings (Personal preferences, breakpoints, window positions)
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+
+# BUT KEEP project.pbxproj - this is ESSENTIAL for others to build!
+# (already included by default, just making it clear)
+
+# Xcode - Workspace (only ignore user-specific parts)
+*.xcworkspace/xcuserdata/
+
+# Swift Package Manager (Generated dependencies)
+.swiftpm/
+.build/
+Package.resolved
+
+# CocoaPods (if you use it)
+Pods/
+*.xcworkspace
+Podfile.lock
+
+# Carthage (if you use it)
+Carthage/Build/
+Carthage/Checkouts/
+
+# Accio (if you use it)
+Dependencies/
+.accio/
+
+# fastlane (deployment automation)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+fastlane/README.md
+
+# Code Injection / Testing
+iOSInjectionProject/
+
+# Backup files
+*~.nib
+*.swp
+*.swo
+*~
+*.orig
+
+# AppCode / JetBrains
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Archives (only ignore if you put them in the repo)
+*.zip
+*.tar.gz
+*.tgz
+
+# =============================================================================
+# 🔒 NEVER COMMIT (Security - if you add these later)
+# =============================================================================
+# Uncomment if you add API keys or secrets:
+# secrets.plist
+# api_keys.txt
+# *.key
+# *.pem
+# .env
+
+# =============================================================================
+# Notes:
+# =============================================================================
+# ✅ Others CAN clone and build because we include:
+#    - All .swift files
+#    - .xcodeproj/project.pbxproj
+#    - Assets.xcassets
+#    - Info.plist
+#    - Entitlements
+#    - README.md
+#
+# ❌ We DON'T include:
+#    - DerivedData (build outputs - others will build their own)
+#    - xcuserdata (personal Xcode settings)
+#    - .DS_Store (macOS metadata)
+#
+# 🔨 To build after cloning:
+#    1. git clone https://github.com/username/Dnamer.git
+#    2. cd Dnamer
+#    3. open Dnamer.xcodeproj
+#    4. Press ⌘R in Xcode
