@@ -24,6 +24,28 @@ Desktop names rendered via ECTextLayer.setString:
 
 ---
 
+### Plits Storage
+```
+User installs plugin
+        ↓
+Plugin loads in Dock
+        ↓
+initialize() runs
+        ↓
+createDefaultPlistIfNeeded() checks:
+   Does ~/Library/Preferences/com.dnamer.desktopnames.plist exist?
+        ↓
+   NO → Creates it with default names
+   YES → Uses existing one
+        ↓
+Mission Control opened
+        ↓
+loadCustomNames() reads the plist
+        ↓
+Desktop names displayed
+
+```
+
 ## Key Classes & Methods
 
 ### **CATextLayer (Foundation)**
@@ -82,47 +104,7 @@ __attribute__((constructor)) onLoad()
 log stream --predicate 'processImagePath CONTAINS "Dock"' --style compact
 
 # Manual Dock restore (if script fails)
-killall Dock; launchctl load /System/Library/LaunchAgents/com.apple.Dock.plist
+launchctl stop com.apple.Dock.agent && launchctl start com.apple.Dock.agent
 
-# View Dock hierarchy
-./show-hierarchy.sh
 ```
 
----
-
-## Customization
-
-Edit `inspect.m` → Modify the hook block:
-
-```objc
-if ([originalString isEqualToString:@"Desktop 1"]) {
-    customName = @"🏠 Home";  // ← Change this
-}
-```
-
-Rerun `./inspect.sh` to recompile and inject.
-
----
-
-## Log Markers
-
-- `✅ INJECTED` - dylib loaded
-- `✅ Found ECTextLayer` - Target class located
-- `✅ Hook installed` - Method swizzled
-- `🎯 Text detected` - Name replacement active
-- `(inspect.dylib) <private>` - Your code running in Dock
-
----
-
-## Error Handling
-
-**Common Issue**: XPC connection errors are normal
-```
-Failed to acquire remote transition coordination from WindowManager
-```
-→ Dock falls back to direct layout control (still works!)
-
-**Fix frozen Dock**: Press `Ctrl+C` or run:
-```bash
-killall -9 Dock && launchctl load /System/Library/LaunchAgents/com.apple.Dock.plist
-```
