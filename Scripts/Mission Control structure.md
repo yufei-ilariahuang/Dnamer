@@ -107,4 +107,5 @@ log stream --predicate 'processImagePath CONTAINS "Dock"' --style compact
 launchctl stop com.apple.Dock.agent && launchctl start com.apple.Dock.agent
 
 ```
-
+## path
+front end writes plist → posts DistributedNotificationCenter.default().post(name:"com.dnamer.reload") → dylib observes and reloads.

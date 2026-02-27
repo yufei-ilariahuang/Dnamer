@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>DesktopRenamer</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.dnamer.DesktopRenamer</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Desktop Renamer</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>NSPrincipalClass</key>
+	<string></string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
+	<key>LSMinimumSystemVersion</key>
+	<string>13.0</string>
+	<key>MacForge</key>
+	<dict>
+		<key>Author</key>
+		<string>Lia huang</string>
+		<key>Description</key>
+		<string>Rename Mission Control desktops with custom names and emoji</string>
+		<key>Compatibility</key>
+		<array>
+			<string>Dock</string>
+		</array>
+		<key>ContactInfo</key>
+		<string>https://github.com/yufei-ilariahuang/Dnamer</string>
+		<key>MinMacForgeVersion</key>
+		<integer>2</integer>
+	</dict>
+	<key>TargetApplications</key>
+	<array>
+		<dict>
+			<key>BundleIdentifier</key>
+			<string>com.apple.dock</string>
+			<key>MinimumVersion</key>
+			<string>13.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>
