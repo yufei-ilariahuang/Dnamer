@@ -24,12 +24,41 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB1B24ED2F5156800030264D /* Bundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7ECB142F4E5B8200BEB93A /* Dnamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dnamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7ECB262F4E5B8300BEB93A /* DnamerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DnamerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7ECB302F4E5B8300BEB93A /* DnamerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DnamerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BB1B24F62F51568A0030264D /* Exceptions for "Bundle" folder in "Dnamer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				desktop_renamer.m,
+				ZKSwizzle.m,
+			);
+			target = BB7ECB132F4E5B8200BEB93A /* Dnamer */;
+		};
+		BB1B24F72F51568A0030264D /* Exceptions for "Bundle" folder in "Bundle" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				desktop_renamer.m,
+				ZKSwizzle.m,
+			);
+			target = BB1B24EC2F5156800030264D /* Bundle */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		BB1B24E82F51564E0030264D /* Bundle */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BB1B24F62F51568A0030264D /* Exceptions for "Bundle" folder in "Dnamer" target */,
+				BB1B24F72F51568A0030264D /* Exceptions for "Bundle" folder in "Bundle" target */,
+			);
+			path = Bundle;
+			sourceTree = "<group>";
+		};
 		BB7ECB162F4E5B8200BEB93A /* Dnamer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Dnamer;
@@ -53,6 +82,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BB1B24EA2F5156800030264D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BB7ECB112F4E5B8200BEB93A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -80,6 +116,7 @@
 		BB7ECB0B2F4E5B8200BEB93A = {
 			isa = PBXGroup;
 			children = (
+				BB1B24E82F51564E0030264D /* Bundle */,
 				BB7ECBB32F4F7A8900BEB93A /* Scripts */,
 				BB7ECB162F4E5B8200BEB93A /* Dnamer */,
 				BB7ECB292F4E5B8300BEB93A /* DnamerTests */,
@@ -94,6 +131,7 @@
 				BB7ECB142F4E5B8200BEB93A /* Dnamer.app */,
 				BB7ECB262F4E5B8300BEB93A /* DnamerTests.xctest */,
 				BB7ECB302F4E5B8300BEB93A /* DnamerUITests.xctest */,
+				BB1B24ED2F5156800030264D /* Bundle.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +139,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BB1B24EC2F5156800030264D /* Bundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB1B24EE2F5156800030264D /* Build configuration list for PBXNativeTarget "Bundle" */;
+			buildPhases = (
+				BB1B24E92F5156800030264D /* Sources */,
+				BB1B24EA2F5156800030264D /* Frameworks */,
+				BB1B24EB2F5156800030264D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bundle;
+			packageProductDependencies = (
+			);
+			productName = Bundle;
+			productReference = BB1B24ED2F5156800030264D /* Bundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		BB7ECB132F4E5B8200BEB93A /* Dnamer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB7ECB3A2F4E5B8300BEB93A /* Build configuration list for PBXNativeTarget "Dnamer" */;
@@ -114,6 +171,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				BB1B24E82F51564E0030264D /* Bundle */,
 				BB7ECB162F4E5B8200BEB93A /* Dnamer */,
 				BB7ECBB32F4F7A8900BEB93A /* Scripts */,
 			);
@@ -180,6 +238,9 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					BB1B24EC2F5156800030264D = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
 					BB7ECB132F4E5B8200BEB93A = {
 						CreatedOnToolsVersion = 26.1.1;
 						LastSwiftMigration = 2610;
@@ -211,11 +272,19 @@
 				BB7ECB132F4E5B8200BEB93A /* Dnamer */,
 				BB7ECB252F4E5B8300BEB93A /* DnamerTests */,
 				BB7ECB2F2F4E5B8300BEB93A /* DnamerUITests */,
+				BB1B24EC2F5156800030264D /* Bundle */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BB1B24EB2F5156800030264D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BB7ECB122F4E5B8200BEB93A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +309,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BB1B24E92F5156800030264D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BB7ECB102F4E5B8200BEB93A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,6 +353,46 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		BB1B24EF2F5156800030264D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = self.Bundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		BB1B24F02F5156800030264D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPrincipalClass = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = self.Bundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		BB7ECB382F4E5B8300BEB93A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -557,6 +673,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BB1B24EE2F5156800030264D /* Build configuration list for PBXNativeTarget "Bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB1B24EF2F5156800030264D /* Debug */,
+				BB1B24F02F5156800030264D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BB7ECB0F2F4E5B8200BEB93A /* Build configuration list for PBXProject "Dnamer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
