@@ -14,7 +14,7 @@ clang -dynamiclib \
   -framework CoreText \
   -framework Cocoa \
   -o desktop_renamer.dylib \
-  desktop_renamer.m \
+  dr2.m \
   ZKSwizzle.m
   
 if [ $? -ne 0 ]; then
@@ -41,6 +41,24 @@ DOCK_PID=$!
 
 # Wait a moment for Dock to start and log initialization
 sleep 2
+
+# Check if Dock is still running
+if ps -p $DOCK_PID > /dev/null 2>&1; then
+    echo "✅ Dock is running with PID: $DOCK_PID"
+else
+    echo "❌ ERROR: Dock crashed or exited immediately!"
+    echo "   Check crash logs with:"
+    echo "   log show --predicate 'processImagePath CONTAINS \"Dock\"' --last 5m --info"
+    echo ""
+    echo "   This might be caused by:"
+    echo "   - SIP (System Integrity Protection) blocking dylib injection"
+    echo "   - Code signing issues"
+    echo "   - Incompatible dylib"
+    echo ""
+    echo "🔄 Restoring normal Dock..."
+    launchctl load /System/Library/LaunchAgents/com.apple.Dock.plist 2>/dev/null
+    exit 1
+fi
 
 echo "Restore Dock:"
 echo "✅ launchctl stop com.apple.Dock.agent && launchctl start com.apple.Dock.agent"

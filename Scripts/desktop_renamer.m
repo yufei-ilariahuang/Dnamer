@@ -1,7 +1,7 @@
 //
 //  desktop_renamer.m
 //  Dnamer
-//
+//hard code rename test
 //  Created by Lia huang on 2/26/26.
 //
 

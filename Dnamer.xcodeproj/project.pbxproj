@@ -35,8 +35,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				build_bundle.sh,
-				desktop_renamer.m,
 				desktop_renamer.sh,
+				dr2.m,
 				Info.plist,
 				ZKSwizzle.m,
 			);
@@ -46,12 +46,19 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				build_bundle.sh,
-				desktop_renamer.m,
 				desktop_renamer.sh,
+				dr2.m,
 				Info.plist,
 				ZKSwizzle.m,
 			);
 			target = BB1B24EC2F5156800030264D /* Bundle */;
+		};
+		BB477C052F562B2700822C43 /* Exceptions for "Scripts" folder in "Dnamer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				desktop_renamer.m,
+			);
+			target = BB7ECB132F4E5B8200BEB93A /* Dnamer */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -82,6 +89,9 @@
 		};
 		BB7ECBB32F4F7A8900BEB93A /* Scripts */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BB477C052F562B2700822C43 /* Exceptions for "Scripts" folder in "Dnamer" target */,
+			);
 			path = Scripts;
 			sourceTree = "<group>";
 		};
