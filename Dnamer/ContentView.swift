@@ -16,6 +16,9 @@ struct ContentView: View {
     
     // Focus management
     @FocusState private var focusedField: Int?
+    
+    // Plist path
+    let plistPath = NSHomeDirectory() + "/Library/Preferences/com.dnamer.desktopnames.plist"
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -66,65 +69,99 @@ struct ContentView: View {
         }
         .padding(20)
         .frame(minWidth: 600, minHeight: 250)
+        .onAppear {
+            loadDesktopNames()
+        }
     }
     
-    /// Applies the desktop names using AppleScript
+    /// Applies the desktop names by saving to plist and notifying the injected code
     private func applyDesktopNames() {
         let names = [text1, text2, text3, text4, text5, text6]
         
-        // Build AppleScript to rename desktops
-        var script = """
-        tell application "System Events"
-            tell application process "Dock"
-        """
+        print("📝 Attempting to save names: \(names)")
+        print("📍 Plist path: \(plistPath)")
         
-        for (index, name) in names.enumerated() where !name.isEmpty {
-            let desktopNumber = index + 1
-            // Escape quotes in the name
-            let escapedName = name.replacingOccurrences(of: "\"", with: "\\\"")
-            script += """
+        do {
+            // Ensure the directory exists
+            let url = URL(fileURLWithPath: plistPath)
+            let directory = url.deletingLastPathComponent()
             
-                try
-                    set value of static text 1 of group \(desktopNumber) of list 1 to "\(escapedName)"
-                end try
-            """
+            if !FileManager.default.fileExists(atPath: directory.path) {
+                try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+                print("📁 Created directory: \(directory.path)")
+            }
+            
+            // Write as property list XML format
+            let plistData = try PropertyListSerialization.data(
+                fromPropertyList: names,
+                format: .xml,
+                options: 0
+            )
+            
+            try plistData.write(to: url, options: .atomic)
+            
+            print("✅ Saved desktop names to plist")
+            print("📄 File size: \(plistData.count) bytes")
+            
+            // Verify the write by reading back
+            if let verifyArray = NSArray(contentsOfFile: plistPath) as? [String] {
+                print("✅ Verified plist contents: \(verifyArray)")
+                
+                if verifyArray == names {
+                    print("✅ Verification successful - data matches!")
+                } else {
+                    print("⚠️ Warning: Saved data doesn't match input")
+                }
+            } else {
+                print("⚠️ Warning: Could not verify plist after writing")
+            }
+            
+            // Send distributed notification to reload names
+            DistributedNotificationCenter.default().post(
+                name: Notification.Name("com.dnamer.reloadDesktopNames"),
+                object: nil
+            )
+            print("📡 Sent reload notification")
+            
+            statusMessage = "✅ Desktop names saved!\nPath: \(plistPath)\nOpen Mission Control to see changes."
+            showStatus = true
+            
+            // Hide success message after 5 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                showStatus = false
+            }
+            
+        } catch {
+            statusMessage = "❌ Error: \(error.localizedDescription)"
+            showStatus = true
+            print("❌ Failed to save plist: \(error)")
+            print("❌ Error details: \(error)")
         }
-        
-        script += """
-        
-            end tell
-        end tell
-        """
-        
-        // Execute the AppleScript
-        executeAppleScript(script)
     }
     
-    /// Executes an AppleScript string
-    private func executeAppleScript(_ script: String) {
-        var error: NSDictionary?
-        
-        if let scriptObject = NSAppleScript(source: script) {
-            let output = scriptObject.executeAndReturnError(&error)
-            
-            if let error = error {
-                statusMessage = "Error: \(error[NSAppleScript.errorMessage] ?? "Unknown error")"
-                showStatus = true
-                print("AppleScript Error: \(error)")
-            } else {
-                statusMessage = "✅ Desktop names applied successfully!"
-                showStatus = true
-                print("AppleScript executed successfully: \(output)")
-                
-                // Hide success message after 3 seconds
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    showStatus = false
-                }
-            }
-        } else {
-            statusMessage = "Error: Failed to create AppleScript"
-            showStatus = true
+    /// Loads desktop names from the plist file
+    private func loadDesktopNames() {
+        guard let array = NSArray(contentsOfFile: plistPath) as? [String] else {
+            // If plist doesn't exist, use default names
+            print("ℹ️ No plist found, using defaults")
+            text1 = "🏠 Home"
+            text2 = "💻 Work"
+            text3 = "🎮 Games"
+            text4 = "📧 Email"
+            text5 = "🎵 Music"
+            text6 = "📱 Social"
+            return
         }
+        
+        // Load names from plist
+        text1 = array.count > 0 ? array[0] : ""
+        text2 = array.count > 1 ? array[1] : ""
+        text3 = array.count > 2 ? array[2] : ""
+        text4 = array.count > 3 ? array[3] : ""
+        text5 = array.count > 4 ? array[4] : ""
+        text6 = array.count > 5 ? array[5] : ""
+        
+        print("✅ Loaded desktop names from plist: \(array)")
     }
 }
 
